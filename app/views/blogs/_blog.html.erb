@@ -1,17 +1,13 @@
-<div id="<%= dom_id blog %>">
-  <p>
-    <strong>Title:</strong>
-    <%= blog.title %>
-  </p>
+<div class="blog-card">
+  <p class="h3"><%= blog.title %></p>
 
-  <p>
-    <strong>Content:</strong>
-    <%= blog.content %>
-  </p>
+  <% if blog.content.length <= 100 %>
+  <p><%= blog.content %></p>
+  <% else %>
+  <p><%= blog.content[..100] %> ...</p>
+  <% end %>
 
-  <p>
-    <strong>User:</strong>
-    <%= blog.user_id %>
-  </p>
-
+  <p><strong>User: </strong><%= User.find_by(id: blog.user_id).name %></p>
+  <%= link_to "show more", blog%>
+  
 </div>

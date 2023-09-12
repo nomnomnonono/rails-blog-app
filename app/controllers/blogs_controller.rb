@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_blog, only: %i[ show edit update destroy ]
 
   # GET /blogs or /blogs.json
@@ -21,6 +22,7 @@ class BlogsController < ApplicationController
 
   # POST /blogs or /blogs.json
   def create
+    :authenticate_user!
     @blog = Blog.new(blog_params)
 
     respond_to do |format|

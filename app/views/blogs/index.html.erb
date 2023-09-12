@@ -1,14 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<%= render "header" %>
 
-<h1>Blogs</h1>
+<div class="container body">
+  <p style="color: green"><%= notice %></p>
 
-<div id="blogs">
-  <% @blogs.each do |blog| %>
-    <%= render blog %>
-    <p>
-      <%= link_to "Show this blog", blog %>
-    </p>
-  <% end %>
+  <p class="h1 title">Latest Posts</p>
+
+  <div class="row">
+    <% @blogs.each do |blog| %>
+      <%= render blog %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New blog", new_blog_path %>

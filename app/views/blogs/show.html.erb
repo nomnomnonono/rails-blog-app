@@ -1,10 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<%= render "header" %>
 
-<%= render @blog %>
+<div class="container">
+  <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= link_to "Edit this blog", edit_blog_path(@blog) %> |
-  <%= link_to "Back to blogs", blogs_path %>
+  <div class="blog-card row">
+    <p class="h3"><%= @blog.title %></p>
 
-  <%= button_to "Destroy this blog", @blog, method: :delete %>
+    <p><%= @blog.content %></p>
+
+    <p><strong>User: </strong><%= User.find_by(id: @blog.user_id).name %></p>
+
+    <div class="col-md-2">
+      <%= button_to "Back to blogs", blogs_path, method: :get, class: "show-btn btn btn-outline-dark" %>
+    </div>
+
+    <% if user_signed_in? %>
+      <div class="col-md-2">
+        <%= button_to "Edit this blog", edit_blog_path(@blog), method: :get, class: "show-btn btn btn-outline-dark" %>
+      </div>
+      <div class="col-md-2">
+        <%= button_to "Destroy this blog", @blog, method: :delete, class: "show-btn btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
 </div>
